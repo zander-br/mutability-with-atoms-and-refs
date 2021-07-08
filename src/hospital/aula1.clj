@@ -14,6 +14,12 @@
   (pprint hospital)
   (def hospital (h.logic/atende hospital :laboratorio1))
   (def hospital (h.logic/atende hospital :espera))
+  (pprint hospital)
+  (def hospital (h.logic/chega-em hospital :espera "666"))
+  (def hospital (h.logic/chega-em hospital :espera "777"))
+  (def hospital (h.logic/chega-em hospital :espera "888"))
+  (pprint hospital)
+  (def hospital (h.logic/chega-em hospital :espera "999"))
   (pprint hospital))
 
-(simula-um-dia)
+;(simula-um-dia)
