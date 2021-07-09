@@ -59,4 +59,36 @@
     (.start (Thread. (fn [] (Thread/sleep 8000)
                        (pprint hospital))))))
 
-(simula-um-dia-em-paralelo-com-partial)
+; (simula-um-dia-em-paralelo-com-partial)
+
+(defn simula-um-dia-em-paralelo-com-doseq
+  []
+  (let [hospital (atom (h.model/novo-hospital))
+        pessoas ["111", "222", "333", "444", "555", "666"]]
+    (doseq [pessoa pessoas]
+      (start-thread-de-chegada hospital pessoa))
+    (.start (Thread. (fn [] (Thread/sleep 8000)
+                       (pprint hospital))))))
+
+; (simula-um-dia-em-paralelo-com-doseq)
+
+(defn simula-um-dia-em-paralelo-com-doseq-com-range
+  []
+  (let [hospital (atom (h.model/novo-hospital))
+        pessoas (range 6)]
+    (doseq [pessoa pessoas]
+      (start-thread-de-chegada hospital pessoa))
+    (.start (Thread. (fn [] (Thread/sleep 8000)
+                       (pprint hospital))))))
+
+;(simula-um-dia-em-paralelo-com-doseq-com-range)
+
+(defn simula-um-dia-em-paralelo-com-dotimes
+  []
+  (let [hospital (atom (h.model/novo-hospital))]
+    (dotimes [pessoa 6]
+      (start-thread-de-chegada hospital pessoa))
+    (.start (Thread. (fn [] (Thread/sleep 8000)
+                       (pprint hospital))))))
+
+(simula-um-dia-em-paralelo-com-dotimes)
