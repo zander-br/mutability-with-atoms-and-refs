@@ -34,3 +34,17 @@
 (defn atende
   [hospital departamento]
   (update hospital departamento pop))
+
+(defn proxima [hospital departamento]
+  "Retorna o próximo paciente da fila"
+  (-> hospital
+      departamento
+      peek))
+
+(defn transfere
+  "Transfere o próximo paciente da fila de um departamento para outro"
+  [hospital de para]
+  (let [pessoa (proxima hospital de)]
+    (-> hospital
+        (atende de)
+        (chega-em para pessoa))))
